@@ -29,6 +29,12 @@ loop:
 	beq $t5, $0, dont_print_invalid_spaces		#if the num of previously seen characters is not zero and
 	beq $t1, $0, dont_print_invalid_spaces		#if the chLaracter is not null and 
 	beq $t1, $t6, dont_print_invalid_spaces		#if the character is not new line then print invalid 	
+	
+	sub $t0, $t2, $t7      #t0 = i - num_spaces_in_front
+	addi $t0, $t0, 1	#t0++ since i is the index and not the length
+	li $t1, 4    #t1 = 4
+	ble $t0, $t1, dont_print_too_long_instead_of_invalid_spaces
+	
 	li $v0, 4
 	la $a0, invalid_spaces
 	syscall		#print invalid spaces
