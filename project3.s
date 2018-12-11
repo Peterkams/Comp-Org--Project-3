@@ -84,14 +84,11 @@ dont_print_empty_string_error:
 
 #about to overwrite all the registers apart from $t5- len(numofcharacters and $t7- numofspaces in front)
 
-	li $t0, 0	#initialized i here
-	addi $t1, $t5, -1	#initialized j(length-1)
-	la $s0, my_string	#got the string address
-	add $s0, $s0, $t7	#got the address of the start of the number
-	add $s0,$s0, $t1	#add length -1 to the address(starts from the end)
-	li $t4, 1 	#initialized power of 36
-	li $t9, 0	#initialized sum of decimal value
-	li $s3, 36	#constant of 36
+	la $s0, my_string       #got the string address
+        add $s0, $s0, $t7       #got the address of the start of the number
+
+	addi $sp, $sp, -4  #allocate space
+	sw $ra, 0($sp)  #store return address
 
 convert_next_digit_loop:
 	li $t8, -1	#initialized the digit to -1
