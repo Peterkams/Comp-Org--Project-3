@@ -99,6 +99,11 @@ dont_print_empty_string_error:
 	move $a0, $t0
 	syscall
 
+	lw $ra, 0($sp)  #restore return address
+	addi $sp, $sp, 4 #deallocated space
+
+	jr $ra
+
 convert_next_digit_loop:
 	li $t8, -1	#initialized the digit to -1
 	lb $s1, 0($s0)	
