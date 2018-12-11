@@ -215,6 +215,9 @@ dont_convert_digit_to_digit:
 	la $a0, print_invalid
 	syscall
 
+	li $v0, 10	#termination syscall
+	syscall
+
 
 
 
