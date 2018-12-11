@@ -2,6 +2,7 @@
 my_string:	.space 3000
 too_long:	.asciiz "Input is too long."
 invalid_spaces:	.asciiz "Invalid base-36 number."
+print_invalid: .asciiz "Invalid base-36 number."
 empty_string_error: .asciiz "Input is empty."
 
 .text		#Assembly language instruction
@@ -30,6 +31,8 @@ loop:
 	beq $t1, $0, dont_print_invalid_spaces		#if the chLaracter is not null and 
 	beq $t1, $t6, dont_print_invalid_spaces		#if the character is not new line then print invalid 	
 	
+	#if invalid spaces and too long: print too long instead
+	#so if i - num_spaces_before_characters > 4: print too long
 	sub $t0, $t2, $t7      #t0 = i - num_spaces_in_front
 	addi $t0, $t0, 1	#t0++ since i is the index and not the length
 	li $t1, 4    #t1 = 4
