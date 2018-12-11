@@ -147,7 +147,15 @@ dont_get_number:
 	move $a0, $s0  #set arg for conversion
 	move $a1, $s1
 	jal converter
-	move $t0, $v0  #get conversion res
+	move $t0, $v0  #get conversion result
+
+	
+	add $v0, $s2, $t0  #return conversion res + first num
+
+exit_converter:
+	lw $ra, 0($sp)  #restore return address
+	lw $s0, 4($sp)  #restore s0  = used for addr of array
+	lw $s1, 8($sp)  #restore s1  = used for length array
 
 
 
