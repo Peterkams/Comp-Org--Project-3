@@ -109,6 +109,8 @@ converter:
 	sw $ra, 0($sp)  #store return address
 	sw $s0, 4($sp)  #store s0  = used for address of arr
 	sw $s1, 8($sp)  #store s1  = used for length arr
+	sw $s2, 12($sp)  #store s2  = used for first num
+	sw $s3, 16($sp)  #store s3  = used for power of 36
 
 
 
