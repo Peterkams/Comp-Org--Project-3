@@ -167,6 +167,12 @@ power_ts:
 
 	li $t0, 0
 	bne $a0, $t0, dont_get_power_of_zero
+	li $v0, 1
+	j exit_power_ts
+dont_get_power_of_zero:
+
+	addi $a0, $a0, -1  #setting arg for recursion call
+	jal power_ts
 
 
 
