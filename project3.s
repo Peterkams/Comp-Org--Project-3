@@ -135,6 +135,11 @@ dont_get_number:
 	jal power_ts
 	move $s3, $v0  # get res t0 = 36 ^ (len-1)
 
+	lb $t0, 0($s0) #loads the first element of the array
+	move $a0, $t0
+	jal char_to_digit
+	move $t0, $v0
+
 
 
 
