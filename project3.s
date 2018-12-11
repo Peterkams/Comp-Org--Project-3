@@ -204,6 +204,11 @@ dont_convert_lowercase_letter_to_digit:
 
         li $t2, 48      #smallest ascii value for decimals
         li $t3, 57      #biggest ascii value for decimals
+        blt $a0, $t2, dont_convert_digit_to_digit	#if char >= 48 and
+        bgt $a0, $t3, dont_convert_digit_to_digit       #char <= 57
+        addi $a0, $a0, -48      #got the decimal value of the decimal
+	move $v0, $a0
+	jr $ra
 
 
 
