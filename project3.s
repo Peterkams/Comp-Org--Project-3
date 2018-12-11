@@ -181,61 +181,12 @@ exit_power_ts:
 	addi $sp, $sp, 4 #deallocated space
 	jr $ra
 
+char_to_digit:
+	li $t2, 65
+	li $t3, 90
+	#convert character to digit
+        blt $a0, $t2, dont_convert_capital_letter_to_digit      #if char >= 65 and
 
 
 
 
-
-
-convert_next_digit_loop:
-	li $t8, -1	#initialized the digit to -1
-	lb $s1, 0($s0)	
-	li $t2, 65	#smallest ascii value for capital letters
-	li $t3, 90	#biggest ascii value for capital letters
-
-	blt $s1, $t2, dont_convert_capital_letter_to_digit 	#if ascii[j] >= 65 and
-	bgt $s1, $t3, dont_convert_capital_letter_to_digit      #if ascii[j] <= 90
-	addi $t8, $s1, -55 	#got the decimal value of the capital letter
-dont_convert_capital_letter_to_digit:
-
-	li $t2, 97	#smallest ascii value for lowercase letters
-	li $t3, 122	#biggest ascii value for lowercase letters
-
-	blt $s1, $t2, dont_convert_lowercase_letter_to_digit 	#if ascii[j] >= 97 and
-	bgt $s1, $t3, dont_convert_lowercase_letter_to_digit     #if ascii[j] <= 122
-	addi $t8, $s1, -87 	#got the decimal value of the capital letter
-dont_convert_lowercase_letter_to_digit:
-
-	li $t2, 48	#smallest ascii value for capital letters
-	li $t3, 57	#biggest ascii value for capital letters
-
-	blt $s1, $t2, dont_convert_digit_to_digit 	#if ascii[j] >= 48 and
-	bgt $s1, $t3, dont_convert_digit_to_digit       #if ascii[j] <= 57
-	addi $t8, $s1, -48	#got the decimal value of the capital letter
-dont_convert_digit_to_digit:
-
-	li $s4, -1	#initialized -1 in $s4
-	bne $t8, $s4, dont_print_invalid_symbol	#if $t8 is -1 then print invalid_spaces 
-	li $v0, 4
-	la $a0, invalid_spaces 
-	syscall
-	jr $ra
-dont_print_invalid_symbol:
-
-	mul $s2, $t8, $t4 	#value = digit * power_of_36
-	mul $t4, $t4, $s3	#power_of_base *= 36
-	add $t9, $t9, $s2	#sum+= value
-
-
-	addi $t0, $t0, 1	#incremented i
-	addi $t1, $t1, -1	#decremented j
-	addi $s0, $s0, -1	#incremented the address to get the next character
-	blt $t0, $t5, convert_next_digit_loop
-
-	li $v0, 1
-	move $a0, $t9
-	syscall		#prints sum of the decimal value
-
-
-
-	jr $ra
