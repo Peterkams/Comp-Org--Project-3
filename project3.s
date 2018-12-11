@@ -186,6 +186,12 @@ char_to_digit:
 	li $t3, 90
 	#convert character to digit
         blt $a0, $t2, dont_convert_capital_letter_to_digit      #if char >= 65 and
+        bgt $a0, $t3, dont_convert_capital_letter_to_digit      #if char <= 90
+        addi $a0, $a0, -55      #got the decimal value of the capital letter
+	move $v0, $a0  #return res
+	jr $ra
+dont_convert_capital_letter_to_digit:
+
 
 
 
