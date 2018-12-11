@@ -209,6 +209,11 @@ dont_convert_lowercase_letter_to_digit:
         addi $a0, $a0, -48      #got the decimal value of the decimal
 	move $v0, $a0
 	jr $ra
+dont_convert_digit_to_digit:
+
+	li $v0, 4	#throw error if character is not in any of the ranges
+	la $a0, print_invalid
+	syscall
 
 
 
