@@ -143,6 +143,12 @@ dont_get_number:
 	addi $s0, $s0, 1  #increment ptr to start of array
 	#effectively saying that the array starts at the next element
 
+	#recursive case
+	move $a0, $s0  #set arg for conversion
+	move $a1, $s1
+	jal converter
+	move $t0, $v0  #get conversion res
+
 
 
 
