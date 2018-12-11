@@ -121,6 +121,10 @@ converter:
 	bne $s1, $t0, dont_get_number	#if length == 1 then
 	lb $t1, 0($s0)			#loads the first element of the array
 
+	move $a0, $t1	#set char to arg for char_to_digit function
+	jal char_to_digit
+	move $t1, $v0  #get result
+
 
 
 
