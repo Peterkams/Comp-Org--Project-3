@@ -95,6 +95,10 @@ dont_print_empty_string_error:
 	jal converter
 	move $t0, $v0
 
+	li $v0, 1    #print result
+	move $a0, $t0
+	syscall
+
 convert_next_digit_loop:
 	li $t8, -1	#initialized the digit to -1
 	lb $s1, 0($s0)	
