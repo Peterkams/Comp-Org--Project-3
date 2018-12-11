@@ -19,7 +19,7 @@ main:
 	li $s0, 0	#initialized previous character to 0
 	li $t5, 0	#initialized num_of_chracters
 	li $t6, 0x0A	#loaded new line here
-	li $t7, 0	#number of spaces in front( used for during calculation)
+	li $t7, 0	#number of spaces in front (used for during calculation)
 
 loop:
 	lb $t1, 0($t0)		#got a character of the string
@@ -107,9 +107,9 @@ dont_print_empty_string_error:
 converter:
 	addi $sp, $sp, -20  #allocate space
 	sw $ra, 0($sp)  #store return address
-	sw $s0, 4($sp)  #store s0  = used for address of arr
-	sw $s1, 8($sp)  #store s1  = used for length arr
-	sw $s2, 12($sp)  #store s2  = used for first num
+	sw $s0, 4($sp)  #store s0  = used for address of array
+	sw $s1, 8($sp)  #store s1  = used for length array
+	sw $s2, 12($sp)  #store s2  = used for first number
 	sw $s3, 16($sp)  #store s3  = used for power of 36
 
 	#transfer args to s-registers
@@ -144,13 +144,13 @@ dont_get_number:
 	#effectively saying that the array starts at the next element
 
 	#recursive case
-	move $a0, $s0  #set arg for conversion
+	move $a0, $s0  #set argument for conversion
 	move $a1, $s1
 	jal converter
 	move $t0, $v0  #get conversion result
 
 	
-	add $v0, $s2, $t0  #return conversion res + first num
+	add $v0, $s2, $t0  #return conversion result + first number
 
 exit_converter:
 	lw $ra, 0($sp)  #restore return address
@@ -217,8 +217,3 @@ dont_convert_digit_to_digit:
 
 	li $v0, 10	#termination syscall
 	syscall
-
-
-
-
-
