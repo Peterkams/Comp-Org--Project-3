@@ -116,6 +116,12 @@ converter:
 	move $s0, $a0  #address of array
 	move $s1, $a1  #length of array
 
+	#base case
+	li $t0, 1
+	bne $s1, $t0, dont_get_number	#if length == 1 then
+	lb $t1, 0($s0)			#loads the first element of the array
+
+
 
 
 
