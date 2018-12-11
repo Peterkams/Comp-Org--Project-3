@@ -125,6 +125,10 @@ converter:
 	jal char_to_digit
 	move $t1, $v0  #get result
 
+	move $v0, $t1			#moves first element to $v0
+	j exit_converter
+dont_get_number:
+
 
 
 
