@@ -129,6 +129,12 @@ converter:
 	j exit_converter
 dont_get_number:
 
+	addi $s1, $s1, -1  #length--
+
+	move $a0, $s1  #set args for power_ts
+	jal power_ts
+	move $s3, $v0  # get res t0 = 36 ^ (len-1)
+
 
 
 
