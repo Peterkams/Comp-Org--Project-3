@@ -112,6 +112,10 @@ converter:
 	sw $s2, 12($sp)  #store s2  = used for first num
 	sw $s3, 16($sp)  #store s3  = used for power of 36
 
+	#transfer args to s-registers
+	move $s0, $a0  #address of array
+	move $s1, $a1  #length of array
+
 
 
 
