@@ -90,6 +90,11 @@ dont_print_empty_string_error:
 	addi $sp, $sp, -4  #allocate space
 	sw $ra, 0($sp)  #store return address
 
+	move $a0, $s0  #set address of start of number
+	move $a1, $t5  #set length of number
+	jal converter
+	move $t0, $v0
+
 convert_next_digit_loop:
 	li $t8, -1	#initialized the digit to -1
 	lb $s1, 0($s0)	
