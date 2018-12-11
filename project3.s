@@ -156,6 +156,17 @@ exit_converter:
 	lw $ra, 0($sp)  #restore return address
 	lw $s0, 4($sp)  #restore s0  = used for addr of array
 	lw $s1, 8($sp)  #restore s1  = used for length array
+	lw $s2, 12($sp)  #restore s2  = used for first num
+	lw $s3, 16($sp)  #store s3  = used for power of 36
+	addi $sp, $sp, 20  #deallocate space
+	jr $ra
+
+power_ts:
+	addi $sp, $sp, -4 #allocate space
+	sw $ra, 0($sp)  #store return address
+
+	li $t0, 0
+	bne $a0, $t0, dont_get_power_of_zero
 
 
 
