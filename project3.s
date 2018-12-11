@@ -177,6 +177,10 @@ dont_get_power_of_zero:
 	li $t2,36 #first number
 	mul $v0, $t2, $t1 #takes the mult result and puts it into $v0
 exit_power_ts:
+	lw $ra, 0($sp)  #restore return address
+	addi $sp, $sp, 4 #deallocated space
+	jr $ra
+
 
 
 
