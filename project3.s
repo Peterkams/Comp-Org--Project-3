@@ -34,7 +34,12 @@ loop:
 	addi $t0, $t0, 1	#t0++ since i is the index and not the length
 	li $t1, 4    #t1 = 4
 	ble $t0, $t1, dont_print_too_long_instead_of_invalid_spaces
-	
+	li $v0, 4
+        la $a0, too_long
+        syscall         #printed too long error for the input
+        jr $ra	
+dont_print_too_long_instead_of_invalid_spaces:
+
 	li $v0, 4
 	la $a0, invalid_spaces
 	syscall		#print invalid spaces
