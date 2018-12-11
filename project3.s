@@ -173,6 +173,10 @@ dont_get_power_of_zero:
 
 	addi $a0, $a0, -1  #setting arg for recursion call
 	jal power_ts
+	move $t1, $v0 #result in $v0 moved to $t1
+	li $t2,36 #first number
+	mul $v0, $t2, $t1 #takes the mult result and puts it into $v0
+exit_power_ts:
 
 
 
