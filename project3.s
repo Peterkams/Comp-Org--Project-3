@@ -192,6 +192,13 @@ char_to_digit:
 	jr $ra
 dont_convert_capital_letter_to_digit:
 
+        li $t2, 97      #smallest ascii value for lowercase letters
+        li $t3, 122     #biggest ascii value for lowercase letters
+
+        blt $a0, $t2, dont_convert_lowercase_letter_to_digit    #if char >= 97 and
+        bgt $a0, $t3, dont_convert_lowercase_letter_to_digit     #if char <= 122
+        addi $a0, $a0, -87      #got the decimal value of the lowercase letter
+
 
 
 
