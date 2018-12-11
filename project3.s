@@ -139,6 +139,10 @@ dont_get_number:
 	move $a0, $t0
 	jal char_to_digit
 	move $t0, $v0
+	mul $s2, $t0, $s3
+	addi $s0, $s0, 1  #increment ptr to start of array
+	#effectively saying that the array starts at the next element
+
 
 
 
