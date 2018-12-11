@@ -104,6 +104,15 @@ dont_print_empty_string_error:
 
 	jr $ra
 
+converter:
+	addi $sp, $sp, -20  #allocate space
+	sw $ra, 0($sp)  #store return address
+	sw $s0, 4($sp)  #store s0  = used for address of arr
+	sw $s1, 8($sp)  #store s1  = used for length arr
+
+
+
+
 convert_next_digit_loop:
 	li $t8, -1	#initialized the digit to -1
 	lb $s1, 0($s0)	
