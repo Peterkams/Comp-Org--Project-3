@@ -92,6 +92,9 @@ dont_print_empty_string_error:
 	sw $s0, 0($sp)  #set addr of start of number
 	sw $t5, 4($sp)  #set length of number
 	jal converter
+	#move $t0, $v0
+	lw $t0, 0($sp)
+	addi $sp, $sp, 4
 
 	li $v0, 1    #print res
 	move $a0, $t0
