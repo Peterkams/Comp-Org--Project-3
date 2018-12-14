@@ -106,6 +106,10 @@ dont_print_empty_string_error:
 	jr $ra
 
 converter:
+	lw $a0, 0($sp)
+	lw $a1, 4($sp)
+	addi $sp, $sp, 8  #deallocate space for parameters
+
 	addi $sp, $sp, -20  #allocate space
 	sw $ra, 0($sp)  #store return address
 	sw $s0, 4($sp)  #store s0  = used for address of arr
