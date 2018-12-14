@@ -157,7 +157,7 @@ dont_get_number:
 	lw $t0, 0($sp)
 	addi $sp, $sp, 4
 	
-	add $v0, $s2, $t0  #return conversion res + first num
+	add $t0, $s2, $t0  #return conversion res + first num and put the return value in $t0
 
 exit_converter:
 	lw $ra, 0($sp)  #restore return address
@@ -166,6 +166,10 @@ exit_converter:
 	lw $s2, 12($sp)  #restore s2  = used for first num
 	lw $s3, 16($sp)  #store s3  = used for power of 36
 	addi $sp, $sp, 20  #deallocate space
+
+	addi $sp, $sp, -4
+	sw $t0, 0($sp)
+
 	jr $ra
 
 power_ts:
