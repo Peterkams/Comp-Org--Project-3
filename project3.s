@@ -130,7 +130,7 @@ converter:
 	jal char_to_digit
 	move $t1, $v0  #get result
 
-	move $v0, $t1			#moves first element to $v0
+	move $t0, $t1			#put the first element in $t0, before it's put on the stack to be returned
 	j exit_converter
 dont_get_number:
 
@@ -149,10 +149,10 @@ dont_get_number:
 	#effectively saying that the array starts at the next element
 
 	#recursive case
-	move $a0, $s0  #set arg for conversion
-	move $a1, $s1
+	addi $sp, $sp, -8
+	sw $s0, 0($sp)
+	sw $s1, 4($sp)
 	jal converter
-	move $t0, $v0  #get conversion res
 	
 	add $v0, $s2, $t0  #return conversion res + first num
 
