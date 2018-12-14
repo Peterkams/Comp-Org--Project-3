@@ -153,6 +153,9 @@ dont_get_number:
 	sw $s0, 0($sp)
 	sw $s1, 4($sp)
 	jal converter
+	#move $t0, $v0  #get conversion result
+	lw $t0, 0($sp)
+	addi $sp, $sp, 4
 	
 	add $v0, $s2, $t0  #return conversion res + first num
 
